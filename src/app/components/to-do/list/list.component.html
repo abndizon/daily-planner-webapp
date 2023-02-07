@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-body">
+      <h4>All To-Do Items</h4>
+    
+      <div *ngIf="items.length == 0">
+        <h6>No tasks</h6>
+      </div>
+    
+      <div *ngIf="items.length > 0">
+        <div *ngFor="let item of items">
+          <!-- <div *ngIf="item.date == getDateToday()"> -->
+            <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)"></todo-item>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </div>

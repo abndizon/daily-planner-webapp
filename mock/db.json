@@ -1,0 +1,64 @@
+{
+    "tasks": [
+        {
+            "id": 1,
+            "name": "Grocery",
+            "category_id": 1,
+            "status_id": 1,
+            "date": "2023-01-20",
+            "start_time": "13:00",
+            "end_time": "13:30",
+            "reminder": ""
+        },
+        {
+            "id": 2,
+            "name": "Workout",
+            "category_id": 1,
+            "status_id": 1,
+            "date": "2023-01-20",
+            "start_time": "14:00",
+            "end_time": "14:30",
+            "reminder": ""
+        },
+        {
+            "id": 3,
+            "name": "Wash dishes",
+            "category_id": 1,
+            "status_id": 1,
+            "date": "2023-01-20",
+            "start_time": "15:00",
+            "end_time": "15:30",
+            "reminder": ""
+        },
+        {
+            "id": 4,
+            "name": "Laundry",
+            "category_id": 1,
+            "status_id": 1,
+            "date": "2023-01-20",
+            "start_time": "16:00",
+            "end_time": "16:30",
+            "reminder": ""
+        }
+    ],
+    "category": [
+        {
+            "id": 1,
+            "name": "Personal"
+        },
+        {
+            "id": 2,
+            "name": "Work"
+        }
+    ],
+    "status": [
+        {
+            "id": 1,
+            "name": "To Do"
+        },
+        {
+            "id": 2,
+            "name": "Done"
+        }
+    ]
+}

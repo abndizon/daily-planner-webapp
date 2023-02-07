@@ -1,0 +1,14 @@
+<h6>{{item.startTime}} -- {{item.endTime}}</h6>
+<div class="input-group mb-3">
+    <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="todoitemCheckbox">
+    </div>
+    <input type="text" class="form-control" aria-label="todoitem" value={{item.name}} readonly>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a routerLink="/todo_items/{{item.id}}" class="btn btn-success w-100">
+            Show Details
+        </a>
+        <button class="btn btn-secondary btn-sm" type="button">Edit</button>
+        <button class="btn btn-danger btn-sm" type="button" (click)="deleteBtnClicked()">Delete</button>
+    </div>
+</div>

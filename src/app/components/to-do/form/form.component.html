@@ -1,0 +1,40 @@
+<li>
+  <a routerLink="/">
+    Home 
+  </a>
+</li>
+<div class="card">
+    <div class="card-body">
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <h4>Add Item</h4>
+  
+        <label for="taskName" class="form-label">Name</label>
+        <input type="text" class="form-control" [(ngModel)]="item.name" id="taskName" placeholder="e.g Do grocery">
+
+        <label class="form-label">Category:</label>
+        <select class="form-select" aria-label="category" (change)="categorySelected($event)" [(ngModel)]="item.categoryId">
+            <option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</option>
+        </select>
+  
+        <label for="taskDate" class="form-label">Date:</label>
+        <input type="date" class="form-control" [(ngModel)]="item.date" id="taskDate">
+  
+        <div class="row">
+          <div class="col">
+            <label for="taskStart" class="form-label">Start Time:</label>
+            <input type="time" class="form-control" [(ngModel)]="item.startTime" id="taskStart" placeholder="">
+          </div>
+          
+          <div class="col">
+            <label for="taskEnd" class="form-label">End Time:</label>
+            <input type="time" class="form-control" [(ngModel)]="item.endTime" id="taskEnd" placeholder="">
+          </div>
+        </div>
+  
+        <!-- <label for="reminder" class="form-label">Remind me at:</label>
+        <input type="datetime-local" class="form-control" [(ngModel)]="item.reminder" id="reminder" placeholder=""> -->
+  
+        <button class="btn btn-primary" type="submit" (click)="addBtnClicked()">Add</button>
+      </div>
+    </div>
+  </div>
