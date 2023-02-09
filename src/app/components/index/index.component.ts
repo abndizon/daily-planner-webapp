@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Category } from 'src/app/models/category';
 import { Item } from 'src/app/models/item';
+import { CategoryService } from 'src/app/services/to-do/category.service';
 import { ItemService } from 'src/app/services/to-do/item.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { ItemService } from 'src/app/services/to-do/item.service';
 })
 export class IndexComponent {
   items: Item[] = []
-  category_id: number
+  categoryId: number
 
   constructor(private itemService: ItemService) {}
 
@@ -37,7 +39,7 @@ export class IndexComponent {
   setCategoryIdHandler = (payload: any) => {
     console.log("Executing setCategoryIdHandler..");
 
-    this.category_id = payload.category_id
-    console.log(`Category ID: ${this.category_id}`)
+    this.categoryId = payload.categoryId
+    console.log(`Category ID: ${this.categoryId}`)
   }
 }

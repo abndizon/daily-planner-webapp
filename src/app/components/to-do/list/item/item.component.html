@@ -1,14 +1,41 @@
-<h6>{{item.startTime}} -- {{item.endTime}}</h6>
+<h6>{{startTime}} -- {{endTime}}</h6>
 <div class="input-group mb-3">
     <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" value="" aria-label="todoitemCheckbox">
+        <input class="form-check-input mt-0" type="checkbox" value="" [(ngModel)]="itemIsChecked"
+            (change)="updateStatus()" aria-label="todoitemCheckbox">
     </div>
     <input type="text" class="form-control" aria-label="todoitem" value={{item.name}} readonly>
+    
     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a routerLink="/todo_items/{{item.id}}" class="btn btn-success w-100">
-            Show Details
+        <a routerLink="/edit/{{item.id}}" class="btn btn-secondary" type="button">
+            Edit
         </a>
-        <button class="btn btn-secondary btn-sm" type="button">Edit</button>
         <button class="btn btn-danger btn-sm" type="button" (click)="deleteBtnClicked()">Delete</button>
     </div>
 </div>
+
+
+    <!-- <div class="list-group-item w-auto">
+
+                <label class="list-group-item d-flex gap-">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked style="font-size: 1.375em;" [(ngModel)]="itemIsChecked"
+                    (change)="updateStatus()">
+                    <span class="pt-1 form-checked-content">
+                        <strong>{{item.name}}</strong>
+                        <small class="d-block text-muted">
+                            <svg class="bi me-1" width="1em" height="1em">
+                                <use xlink:href="#calendar-event" />
+                            </svg>
+                            {{startTime}} –- {{endTime}}
+                        </small>
+                    </span>
+                </label>
+                    <a routerLink="/edit/{{item.id}}" class="btn btn-secondary" type="button">
+                        Edit
+                    </a>
+                    <button class="btn btn-danger btn-sm" type="button" (click)="deleteBtnClicked()">Delete</button>
+
+
+                
+        
+    </div> -->

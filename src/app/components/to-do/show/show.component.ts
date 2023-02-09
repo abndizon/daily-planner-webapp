@@ -15,7 +15,8 @@ export class ShowComponent {
     categoryId: 0,
     date: "",
     startTime: "",
-    endTime: ""
+    endTime: "",
+    statusId: 0
   }
 
   constructor(

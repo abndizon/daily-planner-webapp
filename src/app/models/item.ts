@@ -6,4 +6,5 @@ export interface Item {
     startTime: string
     endTime: string
     reminder?: string
+    statusId: number
 }

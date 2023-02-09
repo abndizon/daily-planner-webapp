@@ -1,17 +1,33 @@
-<div class="card">
+<div class="container">
+  <div class="card">
     <div class="card-body">
-      <h4>All To-Do Items</h4>
-    
-      <div *ngIf="items.length == 0">
-        <h6>No tasks</h6>
+      <div class="row">
+        <div class="col">
+          <h4>To-Do Items</h4>
+        </div>
+
+        <div class="col-auto">
+          <input type="date" class="form-control" name="filterDate" id="filterDate" [(ngModel)]="dateFilter"
+            (input)="filter()">
+        </div>
+
+        <div class="col-auto">
+          <select class="form-select form-select" aria-label="todo-filter" [(ngModel)]="categoryIdFIlter"
+            (change)="filter()">
+            <option value="0" selected>All</option>
+            <option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</option>
+          </select>
       </div>
-    
-      <div *ngIf="items.length > 0">
-        <div *ngFor="let item of items">
-          <!-- <div *ngIf="item.date == getDateToday()"> -->
-            <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)"></todo-item>
-          <!-- </div> -->
+
+      <div *ngIf="displayItems.length == 0">
+        <h6>No to-do's</h6>
+      </div>
+
+      <div *ngIf="displayItems.length > 0">
+        <div *ngFor="let item of displayItems">
+          <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)"></todo-item>
         </div>
       </div>
     </div>
   </div>
+</div>
