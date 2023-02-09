@@ -17,6 +17,7 @@ export class ItemComponent {
   endTime: string
 
   @Output() deleteEvent: EventEmitter<number> = new EventEmitter<number>()
+  @Output() statusChangedEvent: EventEmitter<number> = new EventEmitter<number>()
 
   constructor (private itemService: ItemService, private dateTimeService: DatetimeService) {}
 
@@ -52,7 +53,9 @@ export class ItemComponent {
     }
 
     this.itemService.saveItem(this.item).subscribe(
-      () => {},
+      () => {
+        this.statusChangedEvent.emit();
+      },
       (error) => {
         if (error instanceof HttpErrorResponse) {
           if (error.error instanceof ErrorEvent) {
@@ -79,7 +82,5 @@ export class ItemComponent {
         }
         return throwError(error);
       });
-
-    this.itemService.saveItem(this.item);
   }
 }

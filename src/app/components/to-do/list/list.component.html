@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h4>To-Do Items</h4>
+          <h4>Items</h4>
         </div>
 
         <div class="col-auto">
@@ -17,16 +17,69 @@
             <option value="0" selected>All</option>
             <option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</option>
           </select>
-      </div>
-
-      <div *ngIf="displayItems.length == 0">
-        <h6>No to-do's</h6>
-      </div>
-
-      <div *ngIf="displayItems.length > 0">
-        <div *ngFor="let item of displayItems">
-          <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)"></todo-item>
         </div>
+
+        <hr>
+
+        <div *ngIf="displayItems.length == 0">
+          <h6>No to-do's</h6>
+        </div>
+
+        <!-- <div *ngIf="displayItems.length > 0">
+          <div *ngFor="let item of displayItems">
+            <div class="list-group w-auto">
+              <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)"></todo-item>
+            </div>
+          </div>
+        </div> -->
+
+        <div *ngIf="displayItems.length > 0">
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    To Do
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                  aria-labelledby="panelsStayOpen-headingOne">
+                  <div class="accordion-body">
+                    <div *ngFor="let item of displayItems">
+                      <div *ngIf="item.statusId == 1"> 
+                        <div class="list-group w-auto">
+                          <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)" (statusChangedEvent)="statusChangedHandler()"></todo-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseTwo">
+                    Completed
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                  aria-labelledby="panelsStayOpen-headingTwo">
+                  <div class="accordion-body">
+                    <div *ngFor="let item of displayItems">
+                      <div *ngIf="item.statusId == 2"> 
+                        <div class="list-group w-auto">
+                          <todo-item [item]="item" (deleteEvent)="deleteEventHandler($event)" (statusChangedEvent)="statusChangedHandler()"></todo-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>

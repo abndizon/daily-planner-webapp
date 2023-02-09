@@ -16,6 +16,8 @@ export class ListComponent {
   displayItems: Item[] = [];
   dateFilter: string;
   categoryIdFIlter: number
+  done: number = 0
+  unDone: number = 0
 
   constructor(private dateTimeService: DatetimeService, private categoryService: CategoryService, private itemService: ItemService) { }
 
@@ -39,13 +41,28 @@ export class ListComponent {
     console.log(`Filter Category selected: ${this.categoryIdFIlter}`);
     console.log(`Filter Date selected: ${this.dateFilter}`)
 
+    this.unDone = 0;
+    this.done = 0;
+
     if (this.categoryIdFIlter == 0) {
       console.log("called getItemsByDate")
       this.refreshItems();
     }
     else {
       console.log("called getItemsByDateAndCategory")
+
       this.itemService.getItemsByCategoryAndDate(this.categoryIdFIlter, this.dateFilter).subscribe((items) => {
+        items.forEach((x) => {
+          var date = new Date(x.date);
+          x.date = this.dateTimeService.convertDateToStr(date);
+
+          if (x.statusId == 1) {
+            this.unDone = this.unDone + 1;
+          }
+          else if (x.statusId == 2) {
+            this.done = this.done + 1;
+          }
+        });
         this.displayItems = items;
       })
     }
@@ -58,18 +75,26 @@ export class ListComponent {
       this.allItems.forEach((x) => {
         var date = new Date(x.date);
         x.date = this.dateTimeService.convertDateToStr(date);
+
+        if (x.statusId == 1) {
+          this.unDone = this.unDone + 1;
+        }
+        else if (x.statusId == 2) {
+          this.done = this.done + 1;
+        }
       });
+
       this.displayItems = this.allItems;
     })
   }
 
-  deleteEventHandler = (id : number) => {
+  deleteEventHandler = (id: number) => {
     console.log("Executing deleteEventHandler..");
-    
+
     var taskCount = 0;
     const indexOfItem = this.displayItems.findIndex((x) => {
       if (x.id === id) {
-        console.log(`Task id ${id} found: ${x.name}`); 
+        console.log(`Task id ${id} found: ${x.name}`);
         taskCount++;
       }
       return x.id === id;
@@ -79,6 +104,20 @@ export class ListComponent {
 
     if (indexOfItem !== -1) {
       this.displayItems.splice(indexOfItem, 1);
+    }
+  }
+
+  statusChangedHandler = () => {
+    console.log(`Undone ${this.unDone}`);
+    console.log(`Done ${this.done}`);
+  }
+
+  countToDoStatus = (statusId: number) => {
+    if (statusId == 1) {
+      this.unDone = this.unDone + 1;
+    }
+    else if (statusId == 2) {
+      this.done = this.done + 1;
     }
   }
 }

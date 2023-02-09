@@ -87,7 +87,6 @@ export class FormComponent {
             console.error("Error Event");
           } else {
             console.log(`Error status : ${error.message}`);
-            alert(error.statusText)
 
             if (error.status == 422) {
               var errObj = error.error;
@@ -101,6 +100,9 @@ export class FormComponent {
                   }
                 }
               }
+            }
+            else {
+              alert(error.statusText)
             }
           }
         } else {
