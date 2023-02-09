@@ -107,17 +107,25 @@ export class ListComponent {
     }
   }
 
-  statusChangedHandler = () => {
+  statusChangedHandler = (id: number) => {
+    console.log("Executing statusChangedHandler..");
+    this.countToDoStatus();
+
     console.log(`Undone ${this.unDone}`);
     console.log(`Done ${this.done}`);
   }
 
-  countToDoStatus = (statusId: number) => {
-    if (statusId == 1) {
-      this.unDone = this.unDone + 1;
-    }
-    else if (statusId == 2) {
-      this.done = this.done + 1;
-    }
+  countToDoStatus = () => {
+    this.unDone = 0;
+    this.done = 0;
+
+    this.displayItems.forEach((x) => {
+      if (x.statusId == 1) {
+        this.unDone = this.unDone + 1;
+      }
+      else if (x.statusId == 2) {
+        this.done = this.done + 1;
+      }
+    });
   }
 }
