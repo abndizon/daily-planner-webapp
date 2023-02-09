@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Item } from 'src/app/models/item';
-import { ItemService } from 'src/app/services/to-do/item.service';
 
 @Component({
   selector: 'app-index',
@@ -8,5 +6,4 @@ import { ItemService } from 'src/app/services/to-do/item.service';
   styleUrls: ['./index.component.scss']
 })
 
-export class IndexComponent {
-}
+export class IndexComponent {}
